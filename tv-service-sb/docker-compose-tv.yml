@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  tv-service-sb:
+    image: dgandalcio/tv-service-sb:1.0.0
+    container_name: tv-service-sb
+    hostname: "docker-local"
+    env_file:
+      - app.env
+    expose:
+      - ${SERVER_PORT}
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    volumes:
+      - ./target/newrelic/newrelic.jar:/opt/newrelic.jar
+      - ./newrelic.yml:/opt/newrelic.yml
+    networks:
+      - local-bridge-network
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+
+networks:
+  local-bridge-network:
+    name: local-bridge
