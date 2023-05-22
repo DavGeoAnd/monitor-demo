@@ -13,6 +13,7 @@ import java.util.Random;
 @Slf4j
 public class TestRequests {
     public static void main(String[] args) throws InterruptedException {
+        //String baseUrl = "http://localhost:11000/tvs";
         String baseUrl = "http://localhost:11001/tvs";
         Random random = new Random();
 

@@ -81,18 +81,6 @@
                             <goal>build-info</goal>
                         </goals>
                     </execution>
-                    <execution>
-                        <id>build-docker-image</id>
-                        <goals>
-                            <goal>build-image</goal>
-                        </goals>
-                        <phase>install</phase>
-                        <configuration>
-                            <image>
-                                <name>dgandalcio/${project.artifactId}:${project.version}</name>
-                            </image>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -114,6 +102,49 @@
                             <overWriteSnapshots>false</overWriteSnapshots>
                             <overWriteIfNewer>true</overWriteIfNewer>
                             <outputDirectory>${project.build.directory}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.41.0</version>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>${project.artifactId}:latest</name>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>docker-remove-local</id>
+                        <goals>
+                            <goal>remove</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                    <execution>
+                        <id>docker-build-local</id>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                    <execution>
+                        <id>docker-build-repo</id>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                        <phase>install</phase>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <name>dgandalcio/${project.artifactId}:${project.version}</name>
+                                </image>
+                            </images>
                         </configuration>
                     </execution>
                 </executions>

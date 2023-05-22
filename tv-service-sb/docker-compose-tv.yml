@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   tv-service-sb:
-    image: dgandalcio/tv-service-sb:1.0.0
+    image: tv-service-sb:latest
     container_name: tv-service-sb
     hostname: "docker-local"
     env_file:

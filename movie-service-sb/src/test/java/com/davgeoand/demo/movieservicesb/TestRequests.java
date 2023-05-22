@@ -13,7 +13,8 @@ import java.util.Random;
 @Slf4j
 public class TestRequests {
     public static void main(String[] args) throws InterruptedException {
-        String baseUrl = "http://localhost:12000/movies";
+        //String baseUrl = "http://localhost:12000/movies";
+        String baseUrl = "http://localhost:12001/movies";
         Random random = new Random();
 
         List<Movie> otherMovies = new ArrayList<>();
